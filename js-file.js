@@ -16,7 +16,7 @@ const GameBoard = (() => {
 //     container.appendChild(div);
 // }
 
-const gameControl = (() => {
+const displayControl = (() => {
     const board = function () {
         for (div of GameBoard.gameBoard) {
             container.appendChild(div);
@@ -25,7 +25,7 @@ const gameControl = (() => {
     return {board}
 })();
 
-gameControl.board();
+displayControl.board();
 
 function marker(box, marker) {
     box.textContent = marker;
