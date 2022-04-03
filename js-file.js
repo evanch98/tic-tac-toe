@@ -79,15 +79,15 @@ const gameControl = (() => {
                     marker(box, player2.mark);
                     currentPlayer.textContent = 'Player';
                 }
-                if (checkWinner(player1)) {
-                    console.log("Player 1 win");
-                }
-                else if (checkWinner(player2)) {
-                    console.log('2 Win');
-                }
-                else if (checkDraw()) {
-                    console.log('Draw');
-                }
+            }
+            if (checkWinner(player1)) {
+                console.log("Player 1 win");
+            }
+            else if (checkWinner(player2)) {
+                console.log('2 Win');
+            }
+            else if (checkDraw()) {
+                console.log('Draw');
             }
         });
     });
