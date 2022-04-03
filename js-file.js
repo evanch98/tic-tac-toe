@@ -15,3 +15,20 @@ const GameBoard = (() => {
 for (div of GameBoard.gameBoard) {
     container.appendChild(div);
 }
+
+function marker(box, marker) {
+    box.textContent = marker;
+}
+
+const Player = (name, mark) => {
+    const boxes = document.querySelectorAll('.item');
+    boxes.forEach((box) => {
+        box.addEventListener('click', () => {
+            marker(box, mark);
+            console.log(box.id);
+        });
+    });
+    return {name};
+};
+
+let player = Player('Evan', 'X');
