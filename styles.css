@@ -1,12 +1,22 @@
 :root {
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
+    color: #411F1F;
+}
+
+* {
+    padding: 0;
+    margin: 0;
 }
 
 body {
-    padding: 0;
+    padding-top: 30px;
     margin: 0;
-    background-color: antiquewhite;
+    background-color: #F3F3F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
 .container {
@@ -16,8 +26,56 @@ body {
 }
 
 .item {
-    border: 1px solid black;
+    font-size: 100px;
+    border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+button {
+    width: 300px;
+    height: 2rem;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    background-color: #CEDEBD;
+    border: none;
+    border-radius: 5px;
+
+}
+
+button:hover {
+    border-radius: 30px;
+}
+
+.form-container {
+    opacity: 0;
+}
+
+form {
+    display: grid;
+    gap: 20px;
+    place-items: center center;
+}
+
+.row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+
+input[type="text"] {
+    padding-left: 5px;
+    width: 200px;
+    height: 1.2rem;
+    background-color: #86C4BA;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border: 2px solid #CEDEBD;
 }
