@@ -62,7 +62,7 @@ const checkDraw = () => {
 }
 
 const gameControl = (() => {
-    const display = displayControl.board();
+    displayControl.board();
     const boxes = document.querySelectorAll('.item');
     const start = document.querySelector('#sBtn');
     const form = document.querySelector('.form-container');
@@ -82,13 +82,13 @@ const gameControl = (() => {
             box.textContent = '';
             box.addEventListener('click', () => {
                 if (box.textContent.length === 0 && !(checkWinner(player1) || checkWinner(player2))) {
-                    if (currentPlayer.textContent === `${player1.name}'s turn`) {
+                    if (currentPlayer.textContent === `${playerOne.value}'s turn`) {
                         marker(box, player1.mark);
-                        currentPlayer.textContent = `${player2.name}'s turn`;
+                        currentPlayer.textContent = `${playerTwo.value}'s turn`;
                     }
                     else {
                         marker(box, player2.mark);
-                        currentPlayer.textContent = `${player1.name}'s turn`;
+                        currentPlayer.textContent = `${playerOne.value}'s turn`;
                     }
                 }
                 if (checkWinner(player1)) {
@@ -103,8 +103,4 @@ const gameControl = (() => {
             });
         });
     })
-    
-    return {display};
 })();
-
-gameControl.display;
