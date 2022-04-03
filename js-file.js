@@ -14,11 +14,7 @@ const GameBoard = (() => {
 
 const Player = (name, content) => {
     const divs = document.querySelectorAll('.item');
-    divs.forEach((div) => {
-        div.addEventListener('click', () => {
-            div.textContent = content;
-        });
-    });
+    
     return {content};
 };
 
@@ -26,4 +22,24 @@ for (div of GameBoard.gameBoard) {
     container.appendChild(div);
 }
 
-const player = Player('Evan', 'X');
+const GameControl = (() => {
+    let turn = 'X';
+    let player;
+    const divs = document.querySelectorAll('.item');
+    divs.forEach((div) => {
+        div.addEventListener('click', () => {
+            div.textContent = turn;
+            if (turn === 'X') {
+                player = Player('Evan', turn);
+                turn = 'O';
+            }
+            else {
+                player = Player('Kyaw', turn);
+                turn = 'X';
+            }
+        });
+    });
+    return {player};
+})();
+
+GameControl.player;
