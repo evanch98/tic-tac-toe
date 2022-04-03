@@ -12,10 +12,6 @@ const GameBoard = (() => {
     return {gameBoard};
 })();
 
-// for (div of GameBoard.gameBoard) {
-//     container.appendChild(div);
-// }
-
 const displayControl = (() => {
     const board = function () {
         for (div of GameBoard.gameBoard) {
@@ -36,13 +32,34 @@ const Player = (name, mark) => {
 const checkWinner = (player) => {
     let box = GameBoard.gameBoard;
     if (
-        (box[0].textContent === box[1].textContent && box[1].textContent === box[2].textContent && box[2].textContent === player.mark) || 
+        (box[0].textContent === box[1].textContent && box[1].textContent === box[2].textContent && box[2].textContent === player.mark) ||
+
         (box[3].textContent === box[4].textContent && box[4].textContent === box[5].textContent && box[5].textContent === player.mark) ||
-        (box[6].textContent === box[7].textContent && box[7].textContent === box[8].textContent && box[8].textContent === player.mark)
+
+        (box[6].textContent === box[7].textContent && box[7].textContent === box[8].textContent && box[8].textContent === player.mark) ||
+
+        (box[0].textContent === box[3].textContent && box[3].textContent === box[6].textContent && box[6].textContent === player.mark) ||
+
+        (box[1].textContent === box[4].textContent && box[4].textContent === box[7].textContent && box[7].textContent === player.mark) ||
+
+        (box[2].textContent === box[5].textContent && box[5].textContent === box[8].textContent && box[8].textContent === player.mark) ||
+
+        (box[0].textContent === box[4].textContent && box[4].textContent === box[8].textContent && box[8].textContent === player.mark) ||
+
+        (box[2].textContent === box[4].textContent && box[4].textContent === box[6].textContent && box[6].textContent === player.mark)
         ) {
-        console.log('WIn');
+        return true;
     }
-    return false;
+}
+
+const checkDraw = () => {
+    let draw = true;
+    for (div of GameBoard.gameBoard) {
+        if (div.textContent.length === 0) {
+            draw = false;
+        }
+    }
+    return draw;
 }
 
 const gameControl = (() => {
@@ -64,7 +81,13 @@ const gameControl = (() => {
                 }
                 if (checkWinner(player1)) {
                     console.log("Player 1 win");
-                };
+                }
+                else if (checkWinner(player2)) {
+                    console.log('2 Win');
+                }
+                else if (checkDraw()) {
+                    console.log('Draw');
+                }
             }
         });
     });
