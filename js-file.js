@@ -12,9 +12,20 @@ const GameBoard = (() => {
     return {gameBoard};
 })();
 
-for (div of GameBoard.gameBoard) {
-    container.appendChild(div);
-}
+// for (div of GameBoard.gameBoard) {
+//     container.appendChild(div);
+// }
+
+const gameControl = (() => {
+    const board = function () {
+        for (div of GameBoard.gameBoard) {
+            container.appendChild(div);
+        }
+    }
+    return {board}
+})();
+
+gameControl.board();
 
 function marker(box, marker) {
     box.textContent = marker;
@@ -32,3 +43,4 @@ const Player = (name, mark) => {
 };
 
 let player = Player('Evan', 'X');
+
