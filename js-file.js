@@ -1,5 +1,4 @@
 const container = document.querySelector(".container");
-const currentPlayer = document.querySelector('#player');
 
 const GameBoard = (() => {
     const gameBoard = [];
@@ -65,32 +64,46 @@ const checkDraw = () => {
 const gameControl = (() => {
     const display = displayControl.board();
     const boxes = document.querySelectorAll('.item');
-    const player1 = Player('Evan', 'X');
-    const player2 = Player('Kyaw', 'O');
-    boxes.forEach((box) => {
-        box.addEventListener('click', () => {
-            console.log(box.id);
-            if (box.textContent.length === 0) {
-                if (currentPlayer.textContent === 'Player') {
-                    marker(box, player1.mark);
-                    currentPlayer.textContent = 'Kyaw';
-                }
-                else {
-                    marker(box, player2.mark);
-                    currentPlayer.textContent = 'Player';
-                }
-            }
-            if (checkWinner(player1)) {
-                console.log("Player 1 win");
-            }
-            else if (checkWinner(player2)) {
-                console.log('2 Win');
-            }
-            else if (checkDraw()) {
-                console.log('Draw');
-            }
-        });
+    const start = document.querySelector('#sBtn');
+    const form = document.querySelector('.form-container');
+    const submit = document.querySelector('#submit');
+    const currentPlayer = document.querySelector('#player');
+    const playerOne = document.querySelector('#playerOne');
+    const playerTwo = document.querySelector('#playerTwo');
+    start.addEventListener('click', () => {
+        form.style.cssText = 'opacity: 1';
     });
+    submit.addEventListener('click', () => {
+        const player1 = Player(playerOne.value, 'X');
+        const player2 = Player(playerTwo.value, 'O');
+        currentPlayer.textContent = `${player1.name}'s turn`;
+        form.style.cssText = 'opacity: 0';
+        boxes.forEach((box) => {
+            box.textContent = '';
+            box.addEventListener('click', () => {
+                if (box.textContent.length === 0 && !(checkWinner(player1) || checkWinner(player2))) {
+                    if (currentPlayer.textContent === `${player1.name}'s turn`) {
+                        marker(box, player1.mark);
+                        currentPlayer.textContent = `${player2.name}'s turn`;
+                    }
+                    else {
+                        marker(box, player2.mark);
+                        currentPlayer.textContent = `${player1.name}'s turn`;
+                    }
+                }
+                if (checkWinner(player1)) {
+                    currentPlayer.textContent = `${player1.name} is the winner!`;
+                }
+                else if (checkWinner(player2)) {
+                    currentPlayer.textContent = `${player2.name} is the winner!`;
+                }
+                else if (checkDraw()) {
+                    currentPlayer.textContent = "It's a tie!";
+                }
+            });
+        });
+    })
+    
     return {display};
 })();
 
