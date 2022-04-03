@@ -22,7 +22,7 @@ for (div of GameBoard.gameBoard) {
     container.appendChild(div);
 }
 
-const GameControl = (() => {
+const TurnControl = (() => {
     let turn = 'X';
     let player;
     const divs = document.querySelectorAll('.item');
@@ -37,9 +37,10 @@ const GameControl = (() => {
                 player = Player('Kyaw', turn);
                 turn = 'X';
             }
+            console.log(div.textContent);
         });
     });
     return {player};
 })();
 
-GameControl.player;
+TurnControl.player;
