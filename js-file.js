@@ -33,6 +33,18 @@ const Player = (name, mark) => {
     return {name, mark};
 };
 
+const checkWinner = (player) => {
+    let box = GameBoard.gameBoard;
+    if (
+        (box[0].textContent === box[1].textContent && box[1].textContent === box[2].textContent && box[2].textContent === player.mark) || 
+        (box[3].textContent === box[4].textContent && box[4].textContent === box[5].textContent && box[5].textContent === player.mark) ||
+        (box[6].textContent === box[7].textContent && box[7].textContent === box[8].textContent && box[8].textContent === player.mark)
+        ) {
+        console.log('WIn');
+    }
+    return false;
+}
+
 const gameControl = (() => {
     const display = displayControl.board();
     const boxes = document.querySelectorAll('.item');
@@ -50,6 +62,9 @@ const gameControl = (() => {
                     marker(box, player2.mark);
                     currentPlayer.textContent = 'Player';
                 }
+                if (checkWinner(player1)) {
+                    console.log("Player 1 win");
+                };
             }
         });
     });
@@ -57,4 +72,3 @@ const gameControl = (() => {
 })();
 
 gameControl.display;
-
